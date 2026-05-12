@@ -62,21 +62,16 @@ PEAK_PROMINENCE  = 0.2
 PEAK_SIM_THRESH  = 0.0
 MAX_GAP          = 5
 
-# ── INNOVATION #1: Object-Centric Cropping ──────────────────────────────────
-CROP_CONTEXT_MULTIPLIER = 2.5  # Zoom factor around bbox (2.5x recommended)
+CROP_CONTEXT_MULTIPLIER = 2.5  # Zoom factor around bbox 
 MAX_CROP_ZOOM = 2.5            # Max zoom to avoid pixelation
 ENABLE_CROPPING = True         # Master switch for Innovation #1
 
-# ── INNOVATION #2: Semantic Cross-Validation ────────────────────────────────
 ENABLE_SEMANTIC_GATE = False    # Master switch for Innovation #2
-SEMANTIC_IOU_THRESHOLD = 0.15  # Very conservative: only reject if overlap < 15%
+SEMANTIC_IOU_THRESHOLD = 0.15  # Only reject if overlap < 15%
 SEMANTIC_CONF_THRESHOLD = 0.25 # Grounding DINO confidence threshold
 SEMANTIC_SKIP_GENERIC = True   # Skip semantic gate for generic labels
 GENERIC_LABELS = {"object", "thing", "item", "stuff", "unknown"}
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Grounding DINO Setup (Innovation #2)
-# ─────────────────────────────────────────────────────────────────────────────
 GDINO_MODEL = None
 
 def load_grounding_dino():
@@ -113,7 +108,6 @@ def load_grounding_dino():
 
 def semantic_validate_peak(frame_bgr, bbox_xyxy, object_title):
     """
-    Innovation #2: Semantic Cross-Validation.
     Returns (is_valid, gdino_bbox, gdino_conf, iou)
     """
     if not ENABLE_SEMANTIC_GATE:
@@ -256,7 +250,6 @@ class SamuraiTracker:
 
     def validate_peak_with_crop(self, frame_bgr: np.ndarray, bbox_xyxy, object_title=""):
         """
-        Innovation #1: Object-Centric Cropping + Innovation #3: SAM2 Quality Gate.
         Returns (mask_full_frame, confidence, compactness, crop_info)
         """
         x1, y1, x2, y2 = bbox_xyxy

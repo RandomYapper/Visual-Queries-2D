@@ -1,12 +1,6 @@
 """
 merge_results.py — Fixed version
 Merges all per_query/track.json files into results/predictions.json
-
-FIXES:
-1. Correctly reads track.json fields: frame_number, x, y, width, height
-   and converts to bbox format: fno, x1, y1, x2, y2
-2. Reports and counts failed/empty merges for debugging
-3. Shows clear per-folder mismatch diagnostics
 """
 import json
 import os
