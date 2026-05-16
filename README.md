@@ -62,7 +62,7 @@ Evaluated against a fixed 203-query subset of the Ego4D validation data. Our opt
 ```bash
 git clone [https://github.com/your-org/ego4d-vq2d-samurai.git](https://github.com/your-org/ego4d-vq2d-samurai.git)
 cd ego4d-vq2d-samurai
-
+```
 
 ## Acknowledgement
 
